@@ -1,28 +1,57 @@
 from playsound import playsound
 import time
+import os
 
 
-# ANSI escape sequences to manipulate the terminal
-CLEAR = "\033[2J"
-CLEAR_AND_RETURN = "\033[H"
-def alarm(seconds):
-    time_elapsed = 0
-    print(CLEAR)
+class Alarm:
+    def __init__(self):
+        """
+        Initializes the Alarm object.
+        """
+        pass
 
-    while time_elapsed < seconds:
-        time.sleep(1)
-        time_elapsed += 1
+    @staticmethod
+    def start_alarm(hours=0, minutes=0, seconds=0):
+        """
+        Starts the alarm countdown.
 
-        time_left = seconds - time_elapsed
-        minutes_left = time_left // 60
-        seconds_left = time_left % 60
+        Parameters:
+        - hours (int): Number of hours for the alarm (default is 0).
+        - minutes (int): Number of minutes for the alarm (default is 0).
+        - seconds (int): Number of seconds for the alarm (default is 0).
+        """
+        total_time = hours * 3600 + minutes * 60 + seconds
+        time_elapsed = 0
 
-        print(CLEAR_AND_RETURN)
+        # Clear the screen using os.system
+        os.system('cls' if os.name == 'nt' else 'clear')
 
-        # formating variables {:start with 0 or default value, 2 digits}
-        print(f"{minutes_left:02d}:{seconds_left:02d}")
+        while time_elapsed < total_time:
+            time.sleep(1)
+            time_elapsed += 1
+
+            time_left = total_time - time_elapsed
+            hours_left = time_left // 3600
+            minutes_left = (time_left % 3600) // 60
+            seconds_left = time_left % 60
+
+            # Formatting variables {:start with 0 or default value, 2 digits}
+            print(f"Remaining time: {hours_left:02d}:{minutes_left:02d}:{seconds_left:02d}", end='\r')
+
+        # Print a newline to move to the next line after the alarm is complete
+        print()
+
+        # Play the sound using playsound
+        playsound('hohoho.mp3')
 
 
-alarm(10)
-#playsound('hohoho.mp3')
+if __name__ == "__main__":
+    # Create an instance of the Alarm class
+    alarm_instance = Alarm()
 
+    # Get user input for hours and minutes
+    h = int(input("Enter hours: "))
+    m = int(input("Enter minutes: "))
+
+    # Start the alarm countdown with a fixed 3 seconds of sound
+    alarm_instance.start_alarm(hours=h, minutes=m, seconds=3)
