@@ -55,3 +55,20 @@ if __name__ == "__main__":
 
     # Start the alarm countdown with a fixed 3 seconds of sound
     alarm_instance.start_alarm(hours=h, minutes=m, seconds=3)
+
+"""
+Simplified version
+"""
+# import time
+# import os
+#
+# def alarm(secs):
+#     os.system('cls')
+#     for x in range(secs, -1, -1):
+#         minutes, seconds = divmod(x, 60)
+#         print(f"\r{minutes:02d}:{seconds:02d}", end="\r")
+#         time.sleep(1)
+#     print("Time Up!")
+#
+#
+# alarm(3)
