@@ -1,4 +1,4 @@
-# Palindrome function without the string method.
+# Palindrome function without the string method, preferred way.
 def isPalindrome(x):
     original_number = x
     reversed_number = 0
