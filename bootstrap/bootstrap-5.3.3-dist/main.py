@@ -1,6 +1,4 @@
-"""The following code is divided in 2 methods, the first one is comparing an actual
-int numbers, the second is dealing with a string, which is more direct, faster and simple.
-It's up to you to decide which one is more appropriate for your use case."""
+
 # Function without the string method.
 def isPalindrome(x):
     original_number = x
