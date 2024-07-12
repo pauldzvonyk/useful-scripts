@@ -17,7 +17,7 @@ def isPalindrome(x):
 print(isPalindrome(121))
 
 
-# Transfotming int into string.
+# Transforming integer into string.
 def is_palindrome(n):
     n = str(n)
     if n == n[::-1]:
